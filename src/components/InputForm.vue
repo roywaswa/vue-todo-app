@@ -1,9 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import { storeToRefs } from 'pinia'
 import { useTodoStore } from '../app/store'
 
-const  todos  = useTodoStore()
+const { todos, addTodoToStore } = useTodoStore()
 const todo = ref({
   id: `${Math.random()*100*100*100000}`,
   title: 'Todo',
@@ -11,7 +10,7 @@ const todo = ref({
 })
 
 function addTodo() {
-  todos.addTodoToStore(todo.value)
+  addTodoToStore(todo.value)
 }
 
 </script>
