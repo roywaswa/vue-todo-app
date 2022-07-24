@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { collection, getFirestore, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getFirestore,
+  serverTimestamp,
+  addDoc,
+  query,
+  orderBy
+} from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -12,17 +19,24 @@ const firebaseConfig = {
   measurementId: "G-00VV0L0V3L"
 };
 
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const firebase_db = getFirestore(app);
 
-export const todos_collection = collection(firebase_db,"todos");
+export const todos_collection = collection(firebase_db, "todos");
+export const q = query(todos_collection,orderBy("createdAt", "asc"));
 
-export async function getTodosFromFirestore() {
-  const querySnapshot = await getDocs(todos_collection);
-  const todos = []
-  querySnapshot.forEach(doc => { 
-    todos.push(doc.data())
-  });
-  return todos
+
+
+export async function addTodoToFirestore(todo) {
+  try {
+    const doc = await addDoc(todos_collection, {
+      ...todo,
+      createdAt: serverTimestamp()
+    })
+    return doc.id
+  } catch (error) {
+    console.log(error);
+  }
 }

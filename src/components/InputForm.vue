@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue';
 import { useTodoStore } from '../app/store'
+import { faker } from '@faker-js/faker'
+import { addTodoToFirestore } from '../app/firebase';
+
 
 const { todos, addTodoToStore } = useTodoStore()
 const todo = ref({
@@ -9,7 +12,11 @@ const todo = ref({
 })
 
 function addTodo() {
-  addTodoToStore(todo.value)
+  const fake_todo = {
+    todo_title: faker.lorem.sentence(),
+    todo_complete: faker.datatype.boolean(),
+  }
+  addTodoToFirestore(fake_todo)
 }
 
 </script>

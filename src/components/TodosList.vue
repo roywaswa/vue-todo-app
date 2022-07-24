@@ -1,16 +1,22 @@
 <script setup>
-  import {  getDocs } from "firebase/firestore";
-  import { getTodosFromFirestore, todos_collection } from "../app/firebase";
+  import { onSnapshot } from "firebase/firestore";
+  import { todos_collection, q } from "../app/firebase";
   import { storeToRefs } from "pinia";
   import { useTodoStore } from "../app/store";
   import { onMounted, watch } from "vue";
 
-  const store = useTodoStore();
-  const { todos } = storeToRefs(store);
+  const todo_store = useTodoStore();
+  const { todos } = storeToRefs(todo_store);
 
-  onMounted(async () => {
-    console.log("mounted");
-    todos.value = await getTodosFromFirestore();
+  await onSnapshot(q, (snapshot) => {
+    snapshot.docChanges().forEach((change) => {
+      if (change.type === "added") {
+        todo_store.todos.unshift({
+          id: change.doc.id,
+          ...change.doc.data(),
+        });
+      }
+    });
   });
 </script>
 

@@ -7,7 +7,9 @@ import TodosList from './components/TodosList.vue';
 <template>
   <h1>TODO APP</h1>
   <InputForm/>
-  <TodosList/>
+  <Suspense>
+    <TodosList/>
+  </Suspense>
 </template>
 
 <style>
