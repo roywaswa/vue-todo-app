@@ -1,11 +1,14 @@
 import { initializeApp } from "firebase/app";
 import {
   collection,
+  deleteDoc,
   getFirestore,
   serverTimestamp,
   addDoc,
   query,
-  orderBy
+  orderBy,
+  updateDoc,
+  doc
 } from "firebase/firestore";
 
 
@@ -25,7 +28,7 @@ const app = initializeApp(firebaseConfig);
 const firebase_db = getFirestore(app);
 
 export const todos_collection = collection(firebase_db, "todos");
-export const q = query(todos_collection,orderBy("createdAt", "asc"));
+export const todos_query = query(todos_collection,orderBy("createdAt", "asc"));
 
 
 
@@ -40,3 +43,23 @@ export async function addTodoToFirestore(todo) {
     console.log(error);
   }
 }
+
+export async function updateTodoInFirestore(todo) {
+  try {
+    await updateDoc(doc(firebase_db, "todos", todo.id), {
+      ...todo,
+      updatedAt: serverTimestamp()
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteTodoInFirestore(todo) {
+  try {
+    await deleteDoc(doc(firebase_db, "todos", todo.id))
+  } catch (error) {
+    console.log(error);
+  }
+}
+
