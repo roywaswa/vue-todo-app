@@ -4,7 +4,6 @@ import { useTodoStore } from '../app/store'
 
 const { todos, addTodoToStore } = useTodoStore()
 const todo = ref({
-  id: `${Math.random()*100*100*100000}`,
   title: 'Todo',
   isDone: false
 })

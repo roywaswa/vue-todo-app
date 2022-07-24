@@ -1,10 +1,6 @@
-
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, getDoc, getFirestore, serverTimestamp } from "firebase/firestore";
+import { collection, getFirestore, getDocs } from "firebase/firestore";
 
-import { useTodoStore } from "./store";
-
-// const todo_store = useTodoStore();
 
 const firebaseConfig = {
   apiKey: "AIzaSyBj1d6TnzFI5s2mQq8zIy2Kx1hAZIYmiOU",
@@ -21,3 +17,12 @@ const app = initializeApp(firebaseConfig);
 const firebase_db = getFirestore(app);
 
 export const todos_collection = collection(firebase_db,"todos");
+
+export async function getTodosFromFirestore() {
+  const querySnapshot = await getDocs(todos_collection);
+  const todos = []
+  querySnapshot.forEach(doc => { 
+    todos.push(doc.data())
+  });
+  return todos
+}

@@ -1,4 +1,5 @@
 import { defineStore } from "pinia"
+// import { } from ''
 
 
 export const useTodoStore = defineStore('todos', {
@@ -8,9 +9,8 @@ export const useTodoStore = defineStore('todos', {
     }
   },
   actions:{
-    addTodoToStore(todo){
+    async addTodoToStore(todo){
       this.todos.push(todo)
-      // Implement connection to firebase
     },
     removeTodoFromStore(id) {
       let selectedTodo
