@@ -1,0 +1,49 @@
+.todo-input {
+  min-width: 70%;
+}
+.todo-input form {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(146, 178, 206);
+  border-radius: 2rem;
+}
+.todo-input form input {
+  width: 100%;
+  outline: none;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  border: 0;
+}
+
+* {
+  font-family: Urbanist, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#app h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}/*# sourceMappingURL=main.css.map */

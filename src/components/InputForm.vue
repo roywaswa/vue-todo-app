@@ -15,11 +15,13 @@
       todo_title: faker.lorem.sentence(),
       todo_complete: faker.datatype.boolean(),
     };
-
+    const user_todo = {
+      ...todo.value,
+    }
     if (process.env.NODE_ENV === "development") {
       addTodoToFirestore(fake_todo);
     } else {
-      addTodoToFirestore(todo.value);
+      addTodoToFirestore(user_todo);
     }
   }
 </script>
@@ -27,14 +29,13 @@
 <template>
   <div class="todo-input">
     <form action="POST" class="todo-input" @submit.prevent="addTodo">
-      <label for="todo-field">Todo: </label>
+      <label hidden="true" for="todo-field">Todo</label>
       <input
-        v-model="todo.title"
+        v-model="todo.todo_title"
         type="text"
         name="todo-field"
         id="todo-field"
       />
-      <button type="submit">ADD TODO</button>
     </form>
   </div>
 </template>

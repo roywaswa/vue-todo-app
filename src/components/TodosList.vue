@@ -55,35 +55,21 @@
 
 <template>
   <div class="todoslist">
-    <ol>
-      <li :key="todo.id" v-for="todo in todos">
-        <div class="todoitem">
-          <div @click="toggleTodoAsDone(todo)" class="icon">
-            <span class="material-symbols-outlined"> done </span>
-          </div>
-          <p class="todotitle">{{ todo.todo_title }}</p>
-          || <span>{{ todo.todo_complete }}</span>
-          <div @click="deleteTodo(todo)" class="icon">
-            <span class="material-symbols-outlined"> close </span>
-          </div>
+    <div :key="todo.id" v-for="todo in todos">
+      <div class="todoitem" :class="{'done': todo.todo_complete}">
+        <div @click="toggleTodoAsDone(todo)" class="icon">
+          <label hidden="true" for="todo-complete">Done</label>
+          <input v-model="todo.todo_complete" type="checkbox" name="todo-complete" id="todo-complete">
         </div>
-      </li>
-    </ol>
+        <p class="todotitle" >{{ todo.todo_title }}</p>
+        <div @click="deleteTodo(todo)" class="icon close">
+          <span class="material-symbols-outlined"> close </span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style>
-  .todoitem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  .icon {
-    cursor: pointer;
-    border-radius: 8px;
-    padding: 5px;
-    border: solid 1px rgb(61, 145, 255);
-  }
+
 </style>
