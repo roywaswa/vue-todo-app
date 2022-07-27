@@ -13,13 +13,13 @@ import {
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBj1d6TnzFI5s2mQq8zIy2Kx1hAZIYmiOU",
-  authDomain: "canismajoris.firebaseapp.com",
-  projectId: "canismajoris",
-  storageBucket: "canismajoris.appspot.com",
-  messagingSenderId: "297512133065",
-  appId: "1:297512133065:web:9ab8e88705091ab3ff4818",
-  measurementId: "G-00VV0L0V3L"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 
