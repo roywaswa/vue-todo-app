@@ -5,11 +5,11 @@
 </template>
 
 <style scoped>
-  header {
-    height: 10vh;
-    text-align: center;
-  }
-    h1 {
-    text-align: center;
-  }
+header {
+  height: 10vh;
+  text-align: center;
+}
+h1 {
+  text-align: center;
+}
 </style>

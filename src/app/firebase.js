@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app'
 import {
   collection,
   deleteDoc,
@@ -9,8 +9,7 @@ import {
   orderBy,
   updateDoc,
   doc
-} from "firebase/firestore";
-
+} from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -20,19 +19,16 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
-};
-
+}
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const firebase_db = getFirestore(app);
+const app = initializeApp(firebaseConfig)
+const firebase_db = getFirestore(app)
 
-export const todos_collection = collection(firebase_db, "todos");
-export const todos_query = query(todos_collection,orderBy("createdAt", "asc"));
+export const todos_collection = collection(firebase_db, 'todos')
+export const todos_query = query(todos_collection, orderBy('createdAt', 'asc'))
 
-
-
-export async function addTodoToFirestore(todo) {
+export async function addTodoToFirestore (todo) {
   try {
     const doc = await addDoc(todos_collection, {
       ...todo,
@@ -40,26 +36,25 @@ export async function addTodoToFirestore(todo) {
     })
     return doc.id
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
 
-export async function updateTodoInFirestore(todo) {
+export async function updateTodoInFirestore (todo) {
   try {
-    await updateDoc(doc(firebase_db, "todos", todo.id), {
+    await updateDoc(doc(firebase_db, 'todos', todo.id), {
       ...todo,
       updatedAt: serverTimestamp()
     })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
 
-export async function deleteTodoInFirestore(todo) {
+export async function deleteTodoInFirestore (todo) {
   try {
-    await deleteDoc(doc(firebase_db, "todos", todo.id))
+    await deleteDoc(doc(firebase_db, 'todos', todo.id))
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
-

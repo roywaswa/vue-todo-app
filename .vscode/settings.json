@@ -1,7 +1,5 @@
 {
-  "liveSassCompile.settings.autoprefix": [
-  
-  ],
+  "liveSassCompile.settings.autoprefix": [],
   "liveSassCompile.settings.formats": [
     {
       "format": "expanded",

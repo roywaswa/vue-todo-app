@@ -1,34 +1,34 @@
 <script setup>
-  import { ref } from "vue";
-  import { useTodoStore } from "../app/store";
-  import { faker } from "@faker-js/faker";
-  import { addTodoToFirestore } from "../app/firebase";
+import { ref } from "vue";
+import { useTodoStore } from "../app/store";
+import { faker } from "@faker-js/faker";
+import { addTodoToFirestore } from "../app/firebase";
 
-  const { todos, addTodoToStore } = useTodoStore();
-  const todo = ref({
-    todo_title: "",
-    todo_complete: false,
-  });
+const { todos, addTodoToStore } = useTodoStore();
+const todo = ref({
+  todo_title: "",
+  todo_complete: false,
+});
 
-  function addTodo() {
-    const fake_todo = {
-      todo_title: faker.lorem.sentence(),
-      todo_complete: faker.datatype.boolean(),
-    };
-    const user_todo = {
-      ...todo.value,
-    };
-    if (process.env.NODE_ENV === "development") {
-      addTodoToFirestore(fake_todo);
-    } else {
-      addTodoToFirestore(user_todo);
-    }
+function addTodo() {
+  const fake_todo = {
+    todo_title: faker.lorem.sentence(),
+    todo_complete: faker.datatype.boolean(),
+  };
+  const user_todo = {
+    ...todo.value,
+  };
+  if (process.env.NODE_ENV === "development") {
+    addTodoToFirestore(fake_todo);
+  } else {
+    addTodoToFirestore(user_todo);
   }
+}
 </script>
 
 <template>
   <div class="todo-input">
-    <form  @submit.prevent="addTodo">
+    <form @submit.prevent="addTodo">
       <div class="container">
         <label for="todo-input-field"></label>
         <input
@@ -45,7 +45,7 @@
 </template>
 
 <style scoped>
-.todo-input{
+.todo-input {
   width: 100%;
   padding: 1rem;
   overflow: hidden;
