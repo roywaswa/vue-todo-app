@@ -13,8 +13,7 @@ jobs:
       with:
         node-version: "16.6.0"
         yarn: true
-    - run: yarn ci
-    - run: yarn test
+    - run: yarn install
     - run: yarn build
 
 
