@@ -1,0 +1,20 @@
+name: Node Continuous Intergration
+
+on:
+  pull-request:
+    branches: [main]
+
+jobs:
+  test_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: "16.6.0"
+        yarn: true
+    - run: yarn ci
+    - run: yarn test
+    - run: yarn build
+
+
